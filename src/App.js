@@ -1,23 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import './App.css'
+import React from 'react'
+
+
+const data = require("./building.json")
 
 function App() {
+
+const [search, setSearch] = useState('');
+
+const onChange = (event) => {
+  setSearch(event.target.value);
+}
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+  <h1>: _Admin_Dahboard_ :</h1>
+
+<div >
+  <button onClick={() => data.sort((a,b) => a.emission < b.emission ? -1 : 1)}>Emission sortieren</button>
+</div>
+
+  <input type='text' value={search} onChange={onChange} placeholder='Suche Straßennamen'/>
+
+  <div className='data'>
+    {data
+    .sort((a,b) => a.emission > b.emission ? 1 : -1)
+    .filter(item => item.street.includes(search))
+    .map(data => {
+      return(
+        <div key={data.id}>
+        <input type="checkbox" id="favorite" name="favorite" value="favorite"/>
+        {data.street} - {data.emission} &#11088;
+        </div>
+      )
+    })}
+   
+  </div>
+
+  
+  
     </div>
   );
 }
