@@ -1,8 +1,20 @@
 .App{
-    color: blue;
+    color: #005cc8;
     text-align: center;
 }
 
-.data{
-    color: rgb(84, 84, 118);
+.board{
+    background-color: darkgrey;
+    border-style: solid;
+    margin: 20px;
+    border-radius: 6px;
+    border-color: transparent;
+    padding: 6px;
+}
+
+.sort_button:hover{
+    border-color: transparent;
+    background-color: white;
+    color: #005cc8;
+    cursor: pointer;
 }
