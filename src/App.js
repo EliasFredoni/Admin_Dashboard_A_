@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './App.css'
 import React from 'react'
 
-const data = require("./building.json")
+const data = require("./building.json");
 
 function App() {
 
@@ -14,13 +14,22 @@ const onChange = (event) => {
 
 const sort = () => {
   data.sort((a,b) => a.emission < b.emission ? 1 : -1)
-}
+};
+
+const [favorite, setFavorite] = useState(data.street);
 
 const star = (e) => {
-alert("Auf Favorit gesetzt! 🌟")
+const checked = e.target.checked
+if(checked){
+  alert("Auf Favorit gesetzt! 🌟")
+  setFavorite(favorite + e.favorite)
+} else {
+  setFavorite(favorite - e.favorite)
 }
+};
 
   return (
+    
   <div className="App">
     <h1>: _Admin_Dahboard_ :</h1>
 
@@ -36,14 +45,12 @@ alert("Auf Favorit gesetzt! 🌟")
         <div key={data.id}>
         <input type="checkbox" id='a' name='favorite' onChange={star}/>
         {data.street} - {data.emission} 
-
-        
-
         </div>
         )
         })}
-      </div>
 
+      </div>
+      <p>🌟 Favoriten:{favorite}</p>
     </div>
 
   </div>
