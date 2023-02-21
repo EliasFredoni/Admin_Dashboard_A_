@@ -13,7 +13,7 @@ const onChange = (event) => {
 }
 
 const sort = () => {
-  data.sort((a,b) => a.emission > b.emission ? 1 : -1)
+  data.sort((a,b) => a.emission < b.emission ? 1 : -1)
 }
 
 const star = (e) => {
